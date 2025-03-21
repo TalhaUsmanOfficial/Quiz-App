@@ -1,0 +1,29 @@
+<!--
+! Created On Sat January 11 11:50 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends "user/base.html" %} {% block title %}Past Quizzes{% endblock %} {%
+block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user/past_quizzes.css') }}"
+/>
+
+<!-- Content Block -->
+<div class="quizzes-container">
+  <h2>Past Quizzes</h2>
+
+  <ul class="quiz-list">
+    {% for result in results %}
+    <li class="result-item">
+      <h3>{{ result.category.name }}</h3>
+      <p>Score: {{ result.score }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

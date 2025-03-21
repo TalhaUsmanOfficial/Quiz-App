@@ -1,0 +1,183 @@
+/*
+! Created On Sat December 21 11:39 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* General Body and Layout */
+.admin-body {
+  display: flex;
+  min-height: 100vh;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  padding-top: 20px;
+  position: fixed;
+  height: 100%;
+}
+
+.sidebar-header h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  color: #bdc3c7;
+  text-decoration: none;
+  display: block;
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #34495e;
+}
+
+.sidebar-item:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+
+/* Main Content Area */
+.main-content {
+  margin-left: 250px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Header Styling */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ecf0f1;
+  padding: 15px;
+}
+
+.admin-header .header-left h1 {
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.admin-header .header-right {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Content Section */
+.content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-header h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Cards for Dashboard */
+.dashboard-cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+.card p {
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+/* Footer Styling */
+.admin-footer {
+  background-color: #ecf0f1;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.admin-footer p {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+/* Table for Managing Users */
+.user-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-list th,
+.user-list td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.edit-btn,
+.delete-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-btn:hover {
+  background-color: #2980b9;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}

@@ -1,0 +1,138 @@
+/*
+! Created On Thu January 02 1:12 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* Manage Quizzes Page CSS */
+.manage-quizzes-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+li {
+  list-style: none;
+}
+
+.manage-quizzes-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.create-quiz-container {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.create-quiz-btn {
+  background-color: #4e73df;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.create-quiz-btn:hover {
+  background-color: #2e59d9;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.search-input {
+  padding: 12px;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4e73df;
+}
+
+.quizzes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.quizzes-table th,
+.quizzes-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.quizzes-table th {
+  background-color: #f7f9fc;
+  font-weight: bold;
+  color: #333;
+}
+
+.quizzes-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.quizzes-table tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+.quizzes-table .btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.quizzes-table .edit-btn {
+  background-color: #f7c344;
+  color: white;
+  margin-right: 10px;
+}
+
+.quizzes-table .edit-btn:hover {
+  background-color: #e6b038;
+}
+
+.quizzes-table .delete-btn {
+  background-color: #e74a3b;
+  color: white;
+}
+
+.quizzes-table .delete-btn:hover {
+  background-color: #d04a2d;
+}
+
+.actions {
+  width: 24%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .manage-quizzes-container {
+    padding: 20px;
+  }
+
+  .search-input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .quizzes-table th,
+  .quizzes-table td {
+    font-size: 0.9rem;
+  }
+
+  .quizzes-table .btn {
+    font-size: 0.9rem;
+  }
+}

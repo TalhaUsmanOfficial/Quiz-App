@@ -1,0 +1,36 @@
+/*
+! Created On Fri January 03 10:09 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+.message-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.message-container h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.message-container p {
+  font-size: 18px;
+  color: #666;
+  margin: 20px 0;
+}
+
+.btn-back {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-back:hover {
+  background-color: #0056b3;
+}

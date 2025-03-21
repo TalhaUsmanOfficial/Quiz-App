@@ -1,0 +1,91 @@
+/*
+! Created On Wed December 25 9:28 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* Container */
+.view-result-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.view-result-container h2 {
+  font-size: 24px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Result Details Table */
+.result-details {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  text-align: left;
+}
+
+.result-details th,
+.result-details td {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+.result-details th {
+  background-color: #f3f3f3;
+  color: #333333;
+  text-align: right;
+  width: 30%;
+}
+
+.result-details td {
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Action Buttons */
+.actions {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+.btn-back {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-back:hover {
+  background-color: #2980b9;
+}
+
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e67e22;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}

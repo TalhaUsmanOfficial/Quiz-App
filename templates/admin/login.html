@@ -1,0 +1,63 @@
+<!--
+! Created On Sat December 21 11:45 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Admin Login{% endblock %} {%
+block header_title %}Admin Login{% endblock %} {% block content_header %}Please
+enter your login credentials{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/auth.css') }}"
+/>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Admin Login</h2>
+    <form action="{{ url_for('admin.login') }}" method="POST">
+      <!-- Username Field -->
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          placeholder="Enter your username"
+        />
+      </div>
+      <!-- Email Field -->
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Enter your email"
+        />
+      </div>
+      <!-- Password Field -->
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Login</button>
+
+      <!-- Optional: Error message -->
+      {% if error %}
+      <div class="error-message">{{ error }}</div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock %}

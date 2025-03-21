@@ -1,0 +1,236 @@
+/*
+! Created On Mon December 30 12:03 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* Global Styles */
+body {
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #4e73df;
+  color: white;
+  padding: 40px 20px;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0 20px 20px 0;
+}
+
+.sidebar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #2e59d9;
+}
+
+/* Main Content Area */
+.content-area {
+  margin-left: 250px;
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f7f9fc;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.navbar {
+  background-color: #4e73df;
+  color: white;
+  padding: 15px;
+  text-align: right;
+  border-radius: 5px;
+}
+
+.navbar .greeting {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 0; /* Remove excess bottom margin */
+}
+
+/* Footer */
+footer {
+  background-color: #4e73df;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  border-radius: 20px 20px 0 0;
+  margin-bottom: 0; /* Remove the extra bottom margin */
+}
+
+/* Registration Form */
+.registration-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #4e73df;
+}
+
+.registration-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4e73df;
+  box-shadow: 0 0 8px rgba(78, 115, 223, 0.5);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.btn {
+  background-color: #4e73df;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #2e59d9;
+  transform: translateY(-2px);
+}
+
+.login-redirect {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.login-redirect a {
+  color: #4e73df;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.login-redirect a:hover {
+  color: #2e59d9;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-area {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .sidebar {
+    width: 200px;
+    padding: 20px;
+  }
+
+  .registration-container {
+    width: 90%;
+    padding: 30px;
+  }
+}
+
+/* Flash message styling */
+.alert {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}

@@ -1,0 +1,173 @@
+<!--
+! Created On Thu January 02 11:39 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'teacher/base.html' %} {% block title %}Teacher Profile{% endblock %}
+{% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/teacher/profile.css') }}"
+/>
+
+<!-- Teacher Request Information -->
+<div class="teacher-details-card">
+  <h3>Teacher Information</h3>
+  <p><strong>Full Name:</strong> {{ teacher.full_name }}</p>
+  <p><strong>Username:</strong> {{ teacher.user_name }}</p>
+  <p><strong>Email:</strong> {{ teacher.email }}</p>
+  <p><strong>Contact Number:</strong> {{ teacher.contact_number or 'N/A' }}</p>
+  <p><strong>Teacher Info:</strong></p>
+  <p>{{ teacher.teacher_info }}</p>
+  <p><strong>Additional Notes:</strong></p>
+  <p>{{ teacher.additional_notes or 'N/A' }}</p>
+  <p><strong>Role:</strong> {{ teacher.role.name }}</p>
+  <p>
+    <strong>Category:</strong> {{ teacher.category.name if teacher.category else
+    'N/A' }}
+  </p>
+</div>
+
+<div class="profile-container">
+  <h2>Teacher Profile</h2>
+
+  <!-- Profile Info Section -->
+  <div class="profile-info">
+    <form action="{{ url_for('teacher.update_profile') }}" method="POST">
+      <div class="form-group">
+        <label for="full_name">Full Name:</label>
+        <input
+          type="text"
+          name="full_name"
+          id="full_name"
+          class="form-input"
+          value="{{ teacher.full_name }}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="form-input"
+          value="{{ teacher.email }}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="contact_number">Contact Number:</label>
+        <input
+          type="text"
+          name="contact_number"
+          id="contact_number"
+          class="form-input"
+          value="{{ teacher.contact_number }}"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-update">Update Profile</button>
+    </form>
+    <!-- Success Flash Message -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %} {% if category == 'success' %}
+      <div class="success-message"><strong>Success!</strong> {{ message }}</div>
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+  </div>
+
+  <!-- Change Password Section -->
+  <div class="change-password">
+    <h3>Change Password</h3>
+    <form action="{{ url_for('teacher.change_password') }}" method="POST">
+      <div class="form-group">
+        <label for="current_password">Current Password:</label>
+        <input
+          type="password"
+          name="current_password"
+          id="current_password"
+          class="form-input"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="new_password">New Password:</label>
+        <input
+          type="password"
+          name="new_password"
+          id="new_password"
+          class="form-input"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">Confirm New Password:</label>
+        <input
+          type="password"
+          name="confirm_password"
+          id="confirm_password"
+          class="form-input"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-change-password">
+        Change Password
+      </button>
+    </form>
+    <!-- Display Only Error Flash Messages -->
+    <div>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="flashes">
+        {% for category, message in messages %} {% if category == 'error' %}
+        <div class="error-message" id="error-message">
+          <p><strong>Error:</strong> {{ message }}</p>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+    </div>
+  </div>
+</div>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    // Save the scroll position when the user scrolls
+    window.addEventListener("scroll", function () {
+      localStorage.setItem("scrollPosition", window.scrollY);
+    });
+
+    // Restore the scroll position when the page loads
+    if (localStorage.getItem("scrollPosition")) {
+      window.scrollTo(0, localStorage.getItem("scrollPosition"));
+    }
+  });
+</script>
+<!-- Add JavaScript to auto-dismiss the error message after 3 seconds -->
+<script type="text/javascript">
+  window.onload = function () {
+    const errorMessage = document.getElementById("error-message");
+    if (errorMessage) {
+      setTimeout(function () {
+        errorMessage.style.display = "none"; // Hide the error message after 3 seconds
+      }, 3000);
+    }
+  };
+</script>
+<script>
+  // This will automatically hide flash messages after 5 seconds
+  window.onload = function () {
+    setTimeout(function () {
+      let flashMessages = document.querySelectorAll(".flash-messages");
+      flashMessages.forEach(function (msg) {
+        msg.style.display = "none";
+      });
+    }, 1500); // 1000 milliseconds = 1 seconds
+  };
+</script>
+{% endblock %}

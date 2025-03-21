@@ -1,0 +1,144 @@
+<!--
+! Created On Sun December 22 10:26 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Create Quiz{% endblock %} {%
+block header_title %}Create Quiz{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/create_quiz.css') }}"
+/>
+
+<div class="create-quiz-container">
+  <div class="form-header">
+    <h2>Create a New Quiz</h2>
+  </div>
+  <form method="POST" action="{{ url_for('admin.create_quiz') }}">
+    <div class="form-group">
+      <label for="question">Question</label>
+      <textarea
+        id="question"
+        name="question"
+        rows="3"
+        placeholder="Enter the question here..."
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="option1">Option 1</label>
+      <input
+        type="text"
+        id="option1"
+        name="option1"
+        placeholder="Option 1"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="option2">Option 2</label>
+      <input
+        type="text"
+        id="option2"
+        name="option2"
+        placeholder="Option 2"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="option3">Option 3</label>
+      <input
+        type="text"
+        id="option3"
+        name="option3"
+        placeholder="Option 3"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="option4">Option 4</label>
+      <input
+        type="text"
+        id="option4"
+        name="option4"
+        placeholder="Option 4"
+        required
+      />
+    </div>
+
+    <!-- Category Selection -->
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="" disabled selected>Select Category</option>
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group correct-option">
+      <label>Correct Option</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="correct_option" value="1" required />
+          Option 1
+        </label>
+        <label>
+          <input type="radio" name="correct_option" value="2" required />
+          Option 2
+        </label>
+        <label>
+          <input type="radio" name="correct_option" value="3" required />
+          Option 3
+        </label>
+        <label>
+          <input type="radio" name="correct_option" value="4" required />
+          Option 4
+        </label>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Create Quiz</button>
+      <a href="{{ url_for('admin.quizzes') }}" class="btn btn-secondary"
+        >Cancel</a
+      >
+    </div>
+  </form>
+
+  {% if success %}
+  <div class="alert alert-success" role="alert">{{ success }}</div>
+  {% elif error %}
+  <div class="alert alert-danger" role="alert">{{ error }}</div>
+  {% endif %}
+</div>
+
+<script>
+  // Wait for the DOM to be fully loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    // Select the alert element
+    const alert = document.querySelector(".alert");
+
+    // If an alert exists, set a timeout to hide it
+    if (alert) {
+      setTimeout(() => {
+        alert.style.transition = "opacity 0.5s ease";
+        alert.style.opacity = "0"; // Fade out
+
+        // Remove the alert from the DOM after fading out
+        setTimeout(() => {
+          alert.remove();
+        }, 500); // Matches the fade-out transition duration
+      }, 5000); // Delay of 5 seconds
+    }
+  });
+</script>
+
+{% endblock %}

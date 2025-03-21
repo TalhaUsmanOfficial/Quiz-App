@@ -1,0 +1,105 @@
+/*
+! Created On Wed December 25 2:31 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+.create-result {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.create-result .btn-create {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.create-result .btn-create:hover {
+  background-color: #2980b9;
+}
+
+.create-result-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-result-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333333;
+  text-align: center;
+}
+
+.create-result-container form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.create-result-container form input,
+.create-result-container form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.create-result-container form button {
+  background-color: #2ecc71;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.create-result-container form button:hover {
+  background-color: #27ae60;
+}
+
+/* Action Button Styles inside Table */
+.btn {
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-view {
+  background-color: #c92a02 !important;
+  color: white;
+}
+
+.btn-view:hover {
+  background-color: #920404 !important;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e67e22;
+}

@@ -1,0 +1,126 @@
+<!--
+! Created On Mon December 23 10:21 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Manage Quizzes{% endblock %} {%
+block header_title %}Manage Quizzes{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/quizzes.css') }}"
+/>
+<div class="quizzes-container">
+  <div class="quizzes-header">
+    <h2>Manage Quizzes</h2>
+    <form
+      action="{{ url_for('admin.quizzes') }}"
+      method="GET"
+      class="search-form"
+    >
+      <input
+        type="text"
+        name="search"
+        placeholder="Search By Question, Category or Option"
+        value="{{ request.args.get('search', '') }}"
+        class="search-bar"
+      />
+      <button type="submit" class="btn btn-search">Search</button>
+    </form>
+    <a href="{{ url_for('admin.create_quiz') }}" class="btn btn-primary"
+      >Create Quiz</a
+    >
+  </div>
+
+  <!-- Quizzes Table -->
+  <div class="quiz-list">
+    <table>
+      <thead>
+        <tr>
+          <th>SNo.</th>
+          <th>Question</th>
+          <th>Options</th>
+          <th>Category</th>
+          <th style="width: 240px">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz in quizzes %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ quiz.question }}</td>
+          <td>
+            <ul>
+              {% if quiz.correct_option == quiz.option1 %}
+              <li style="color: green">{{ quiz.option1 }}</li>
+              <li>{{ quiz.option2 }}</li>
+              <li>{{ quiz.option3 }}</li>
+              <li>{{ quiz.option4 }}</li>
+              {% elif quiz.correct_option == quiz.option2 %}
+              <li>{{ quiz.option1 }}</li>
+              <li style="color: green">{{ quiz.option2 }}</li>
+              <li>{{ quiz.option3 }}</li>
+              <li>{{ quiz.option4 }}</li>
+              {% elif quiz.correct_option == quiz.option3 %}
+              <li>{{ quiz.option1 }}</li>
+              <li>{{ quiz.option2 }}</li>
+              <li style="color: green">{{ quiz.option3 }}</li>
+              <li>{{ quiz.option4 }}</li>
+              {% elif quiz.correct_option == quiz.option4 %}
+              <li>{{ quiz.option1 }}</li>
+              <li>{{ quiz.option2 }}</li>
+              <li>{{ quiz.option3 }}</li>
+              <li style="color: green">{{ quiz.option4 }}</li>
+              {% endif %}
+            </ul>
+          </td>
+          <td>{{ quiz.category.name }}</td>
+          <td class="action-btns">
+            <a
+              href="{{ url_for('admin.edit_quiz', quiz_id=quiz.id) }}"
+              class="btn btn-edit"
+              >Edit</a
+            >
+            <a
+              href="{{ url_for('admin.delete_quiz', quiz_id=quiz.id) }}"
+              class="btn btn-delete"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  // Function to save scroll position
+  function saveScrollPosition() {
+    localStorage.setItem("scrollPosition", window.scrollY);
+  }
+
+  // Function to restore scroll position
+  function restoreScrollPosition() {
+    const savedPosition = localStorage.getItem("scrollPosition");
+    if (savedPosition !== null) {
+      window.scrollTo(0, parseFloat(savedPosition));
+    }
+  }
+
+  // Event listener to save scroll position when user scrolls
+  window.addEventListener("scroll", () => {
+    saveScrollPosition();
+  });
+
+  // Restore scroll position when the page loads
+  window.addEventListener("load", () => {
+    restoreScrollPosition();
+  });
+
+  // Optional: Clear scroll position when the user leaves the page (e.g., navigation)
+  window.addEventListener("beforeunload", () => {
+    saveScrollPosition(); // Ensure the last position is saved
+  });
+</script>
+{% endblock %}

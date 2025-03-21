@@ -1,0 +1,55 @@
+<!--
+! Created On Sat January 11 12:08 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends "user/base.html" %} {% block title %}Quiz Result{% endblock %} {%
+block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user/quiz_result.css') }}"
+/>
+
+<div class="result-container">
+  <div class="result-card">
+    <h2>Quiz Result</h2>
+    <p><strong>Quiz Name:</strong> {{ category.name }}</p>
+    <p><strong>Your Score:</strong> {{ score }} %</p>
+
+    <!-- Rating Section -->
+    <div class="rating-section">
+      <h3>Rate This Quiz</h3>
+      <form
+        action="{{ url_for('user.rate_quiz', category_id=category.id) }}"
+        method="POST"
+      >
+        <div class="stars">
+          <input type="radio" id="star-5" name="rating" value="5" required />
+          <label for="star-5" title="5 stars">&#9733;</label>
+          <input type="radio" id="star-4" name="rating" value="4" required />
+          <label for="star-4" title="4 stars">&#9733;</label>
+          <input type="radio" id="star-3" name="rating" value="3" required />
+          <label for="star-3" title="3 stars">&#9733;</label>
+          <input type="radio" id="star-2" name="rating" value="2" required />
+          <label for="star-2" title="2 stars">&#9733;</label>
+          <input type="radio" id="star-1" name="rating" value="1" required />
+          <label for="star-1" title="1 star">&#9733;</label>
+        </div>
+
+        <textarea
+          name="review"
+          placeholder="Write your feedback here..."
+        ></textarea>
+        <button type="submit" class="btn btn-primary">
+          Submit Rating & Feedback
+        </button>
+      </form>
+      <form action="{{url_for('user.dashboard')}}">
+        <button type="submit" class="btn btn-cancel">Back To Dashboard</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

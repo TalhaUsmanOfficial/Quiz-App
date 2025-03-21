@@ -1,0 +1,33 @@
+<!--
+! Created On Sun January 12 12:39 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+{% extends 'admin/base.html' %} {% block title %}Reviews{% endblock %} {% block
+content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/reviews.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>
+<!-- Content Block -->
+<div class="reviews-container">
+  <h2>User Reviews</h2>
+
+  <ul class="review-list">
+    {% for review in reviews %}
+    <li class="review-item">
+      <p><strong>User:</strong> {{ review.user.username }}</p>
+      <p><strong>Category:</strong> {{ review.category.name }}</p>
+      <p><strong>Rating:</strong> {{ review.rating }}</p>
+      <p><strong>Review:</strong> {{ review.comment }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

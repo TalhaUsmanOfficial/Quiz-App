@@ -1,0 +1,148 @@
+<!--
+! Created On Sun December 22 12:37 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %}
+{% block title %}Edit Quiz{% endblock %}
+{% block header_title %}Edit Quiz{% endblock %}
+{% block content_header %}Edit the quiz details{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/edit_quiz.css') }}"/>
+
+<div class="edit-quiz-container">
+  <div class="edit-quiz-card">
+    <h2>Edit Quiz</h2>
+    <form action="{{ url_for('admin.edit_quiz', quiz_id=quiz.id) }}" method="POST">
+      
+      <!-- Quiz Title Field -->
+      <div class="input-group">
+        <label for="question">Quiz Question</label>
+        <input type="text" id="question" name="question" value="{{ quiz.question }}" required />
+      </div>
+
+      <!-- Options Fields -->
+      <div class="input-group">
+        <label for="option1">Option 1</label>
+        <input type="text" id="option1" name="option1" value="{{ quiz.option1 }}" required />
+      </div>
+
+      <div class="input-group">
+        <label for="option2">Option 2</label>
+        <input type="text" id="option2" name="option2" value="{{ quiz.option2 }}" required />
+      </div>
+
+      <div class="input-group">
+        <label for="option3">Option 3</label>
+        <input type="text" id="option3" name="option3" value="{{ quiz.option3 }}" required />
+      </div>
+
+      <div class="input-group">
+        <label for="option4">Option 4</label>
+        <input type="text" id="option4" name="option4" value="{{ quiz.option4 }}" required />
+      </div>
+
+      <!-- Correct Option -->
+      <div class="form-group correct-option">
+        <label>Correct Option</label>
+        <div class="radio-group">
+          {% if quiz.option1 == quiz.correct_option %}
+            <label>
+              <input type="radio" name="correct_option" value="1" required checked />
+              Option 1
+            </label>
+          {% else %}
+            <label>
+              <input type="radio" name="correct_option" value="1" required />
+              Option 1
+            </label>
+          {% endif %}
+
+          {% if quiz.option2 == quiz.correct_option %}
+            <label>
+              <input type="radio" name="correct_option" value="2" required checked />
+              Option 2
+            </label>
+          {% else %}
+            <label>
+              <input type="radio" name="correct_option" value="2" required />
+              Option 2
+            </label>
+          {% endif %}
+
+          {% if quiz.option3 == quiz.correct_option %}
+            <label>
+              <input type="radio" name="correct_option" value="3" required checked />
+              Option 3
+            </label>
+          {% else %}
+            <label>
+              <input type="radio" name="correct_option" value="3" required />
+              Option 3
+            </label>
+          {% endif %}
+
+          {% if quiz.option4 == quiz.correct_option %}
+            <label>
+              <input type="radio" name="correct_option" value="4" required checked />
+              Option 4
+            </label>
+          {% else %}
+            <label>
+              <input type="radio" name="correct_option" value="4" required />
+              Option 4
+            </label>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Category Selection (Added at the end) -->
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          {% for category in categories %}
+            <option value="{{ category.id }}" {% if category.id == quiz.category_id %} selected {% endif %}>
+              {{ category.name }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Save Changes</button>
+      <a href="{{ url_for('admin.dashboard') }}" class="cancel-btn">
+        <button class="submit-btn cancel" style="margin-top: 5px">Back</button>
+      </a>
+    </form>
+
+    {% if success %}
+      <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% elif error %}
+      <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  // Wait for the DOM to be fully loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    // Select the alert element
+    const alert = document.querySelector(".alert");
+
+    // If an alert exists, set a timeout to hide it
+    if (alert) {
+      setTimeout(() => {
+        alert.style.transition = "opacity 0.5s ease";
+        alert.style.opacity = "0"; // Fade out
+
+        // Remove the alert from the DOM after fading out
+        setTimeout(() => {
+          alert.remove();
+        }, 500); // Matches the fade-out transition duration
+      }, 5000); // Delay of 5 seconds
+    }
+  });
+</script>
+{% endblock %}

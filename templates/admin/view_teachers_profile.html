@@ -1,0 +1,171 @@
+<!--
+! Created On Mon December 30 10:49 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %}
+{% block title %}Teacher Request Details{% endblock %}
+{% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/view_teachers_profile.css') }}"
+/>
+<div class="teacher-request-container">
+  <h2>Teacher Request Details</h2>
+
+  <!-- Teacher Request Information -->
+  <div class="teacher-details-card">
+    <h3>Teacher Information</h3>
+    <p><strong>Full Name:</strong> {{ teacher.full_name }}</p>
+    <p><strong>Username:</strong> {{ teacher.user_name }}</p>
+    <p><strong>Email:</strong> {{ teacher.email }}</p>
+    <p><strong>Contact Number:</strong> {{ teacher.contact_number or 'N/A' }}</p>
+    <p><strong>Teacher Info:</strong></p>
+    <p>{{ teacher.teacher_info }}</p>
+    <p><strong>Additional Notes:</strong></p>
+    <p>{{ teacher.additional_notes or 'N/A' }}</p>
+    <p><strong>Status:</strong> {{ teacher.status }}</p>
+    <p><strong>Role:</strong> {{ teacher.role.name }}</p>
+    <p><strong>Category:</strong> {{ teacher.category.name if teacher.category else 'N/A' }}</p>
+    <p><strong>Request Created At:</strong> {{ teacher.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+  </div>
+
+  <!-- Edit Teacher Form -->
+  <div class="edit-teacher-form">
+    <h3>Edit Teacher Details</h3>
+    <form method="POST" action="{{ url_for('admin.edit_teachers_profile', teacher_id=teacher.id) }}">
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="full_name">Full Name</label>
+        <input
+          type="text"
+          id="full_name"
+          name="full_name"
+          value="{{ teacher.full_name }}"
+          required
+          class="form-control"
+        />
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label for="user_name">Username</label>
+        <input
+          type="text"
+          id="user_name"
+          name="user_name"
+          value="{{ teacher.user_name }}"
+          required
+          class="form-control"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value="{{ teacher.email }}"
+          required
+          class="form-control"
+        />
+      </div>
+
+      <!-- Contact Number -->
+      <div class="form-group">
+        <label for="contact_number">Contact Number</label>
+        <input
+          type="text"
+          id="contact_number"
+          name="contact_number"
+          value="{{ teacher.contact_number }}"
+          class="form-control"
+        />
+      </div>
+
+      <!-- Teacher Info -->
+      <div class="form-group">
+        <label for="teacher_info">Teacher Info</label>
+        <textarea
+          id="teacher_info"
+          name="teacher_info"
+          required
+          class="form-control"
+        >{{ teacher.teacher_info }}</textarea>
+      </div>
+
+      <!-- Additional Notes -->
+      <div class="form-group">
+        <label for="additional_notes">Additional Notes</label>
+        <textarea
+          id="additional_notes"
+          name="additional_notes"
+          class="form-control"
+        >{{ teacher.additional_notes }}</textarea>
+      </div>
+
+      <!-- Role -->
+<div class="form-group">
+  <label for="role">Role</label>
+  <select id="role" name="role_id" required class="form-control">
+    {% for role in roles %}
+      {% if role.name != 'STUDENT' %}
+      <option value="{{ role.id }}" {% if teacher.role.id == role.id %}selected{% endif %}>
+        {{ role.name }}
+      </option>
+      {% endif %} {% endfor %} 
+  </select>
+</div>
+
+<!-- Category -->
+<div class="form-group">
+  <label for="category">Category</label>
+  <select id="category" name="category_id" class="form-control">
+    <option value="">None</option>
+    {% for category in categories %}
+      <option value="{{ category.id }}" {% if teacher.category and teacher.category.id == category.id %}selected{% endif %}>
+        {{ category.name }}
+      </option>
+    {% endfor %}
+  </select>
+</div>
+
+
+      <!-- Status -->
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" name="status" required class="form-control">
+          <option value="Pending" {% if teacher.status == "Pending" %}selected{% endif %}>
+            Pending
+          </option>
+          <option value="Approved" {% if teacher.status == "Approved" %}selected{% endif %}>
+            Approved
+          </option>
+          <option value="Rejected" {% if teacher.status == "Rejected" %}selected{% endif %}>
+            Rejected
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+    <a href="{{url_for('admin.teachers')}}">
+      <button type="submit" class="btn btn-secondary" style="margin-top: 3px;">Back</button>
+    </a>
+  </div>
+
+  <!-- Approve/Reject Buttons -->
+  <div class="action-buttons">
+    <form method="POST" action="{{ url_for('admin.approve_teacher', teacher_id=teacher.id) }}">
+      <button type="submit" class="btn btn-success">Approve</button>
+    </form>
+    <form method="POST" action="{{ url_for('admin.reject_teacher', teacher_id=teacher.id) }}">
+      <button type="submit" class="btn btn-danger">Reject</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

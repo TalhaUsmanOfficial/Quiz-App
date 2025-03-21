@@ -1,0 +1,71 @@
+<!--
+! Created On Fri January 03 10:33 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends "user/base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user/auth.css') }}"
+/>
+
+<!-- Flash message container -->
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%}
+<div id="flash-message" class="flash-message">
+  {% for category, message in messages %}
+  <div class="flash-message-{{ category }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %} {% endwith %}
+
+<div class="auth-container">
+  <h2>Create an Account</h2>
+  <form action="{{ url_for('user.signup') }}" method="POST">
+    <div class="form-group">
+      <label for="user_name">Username:</label>
+      <input
+        type="text"
+        name="user_name"
+        id="user_name"
+        class="form-input"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" class="form-input" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="form-input"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </form>
+  <p>
+    Already have an account?
+    <a href="{{ url_for('user.login') }}">Log in here</a>.
+  </p>
+</div>
+
+<!-- JavaScript to hide the flash message after 3 seconds -->
+<script>
+  window.onload = function () {
+    const flashMessage = document.getElementById("flash-message");
+    if (flashMessage) {
+      setTimeout(function () {
+        flashMessage.style.display = "none";
+      }, 3000); // Hide after 3 seconds
+    }
+  };
+</script>
+{% endblock %}

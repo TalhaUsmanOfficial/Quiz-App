@@ -1,0 +1,167 @@
+/*
+! Created On Sun December 29 11:22 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* File: css/admin/approvals.css */
+
+/* File: css/admin/approvals.css */
+
+.approval-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.approval-container h2 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+  flex: 1;
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.search-form select {
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.search-form .btn-search {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-form .btn-search:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th,
+table td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #dddddd;
+}
+
+table td a,
+table td button {
+  margin: 3px;
+}
+
+table th {
+  background-color: #f4f4f4;
+  color: #333333;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table .btn-view {
+  background-color: #17a2b8;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table .btn-approve {
+  background-color: #28a745;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table .btn-reject {
+  background-color: #dc3545;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table .btn-view:hover {
+  background-color: #138496;
+}
+
+table .btn-approve:hover {
+  background-color: #218838;
+}
+
+table .btn-reject:hover {
+  background-color: #c82333;
+}
+
+/* Add the following styles to the existing CSS */
+
+.export-excel {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.btn-export {
+  padding: 13px 10px;
+  width: 20%;
+  background-color: #259d41;
+  /* #4e73df */
+  /* #259d41 */
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-export:hover {
+  background-color: #74eb7c;
+  /* #2e59d9 */
+  box-shadow: 0 4px 8px rgba(46, 89, 217, 0.4);
+}
+
+/* Styling for Buttons */
+.btn-export:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(78, 115, 223, 0.6);
+}

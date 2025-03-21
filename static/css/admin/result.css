@@ -1,0 +1,158 @@
+/*
+! Created On Wed December 25 2:19 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+.create-result {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.create-result .btn-create {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.create-result .btn-create:hover {
+  background-color: #2980b9;
+}
+
+.create-result-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-result-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333333;
+  text-align: center;
+}
+
+.create-result-container form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.create-result-container form input,
+.create-result-container form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.create-result-container form button {
+  background-color: #2ecc71;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.create-result-container form button:hover {
+  background-color: #27ae60;
+}
+
+/* Table Styles */
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+}
+
+.result-table th,
+.result-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.result-table th {
+  background-color: #3498db;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.result-table td {
+  font-size: 14px;
+}
+
+.result-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.result-table tr:hover {
+  background-color: #e1e1e1;
+}
+
+/* Action Button Styles inside Table */
+.btn {
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-view {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-view:hover {
+  background-color: #2980b9;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e67e22;
+}
+
+/* Adjustments for the buttons inside table cells */
+.result-table td a {
+  margin-right: 10px;
+}
+
+.btn-export {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btn-export:hover {
+  background-color: #2980b9;
+}

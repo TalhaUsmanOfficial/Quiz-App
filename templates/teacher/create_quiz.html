@@ -1,0 +1,231 @@
+<!--
+! Created On Thu January 02 12:09 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+<!-- Create Quiz Page -->
+{% extends 'teacher/base.html' %} {% block title %}Create Quiz{% endblock %} {%
+block content %}
+<div class="quiz-container">
+  <div class="quiz-header">
+    <h2>Create a New Quiz</h2>
+  </div>
+
+  <form
+    action="{{ url_for('teacher.create_quiz') }}"
+    method="POST"
+    class="quiz-form"
+  >
+    <!-- Question Section -->
+    <div class="form-group">
+      <label for="question">Question:</label>
+      <input
+        type="text"
+        id="question"
+        name="question"
+        placeholder="Enter your question here"
+        required
+      />
+    </div>
+
+    <!-- Options Section -->
+    <div class="options-group">
+      <label>Options:</label>
+      <div class="option-item">
+        <input
+          type="radio"
+          id="option1"
+          name="correct_option"
+          value="1"
+          required
+        />
+        <input
+          type="text"
+          id="option1-text"
+          name="option1"
+          placeholder="Enter Option 1"
+          required
+        />
+      </div>
+      <div class="option-item">
+        <input
+          type="radio"
+          id="option2"
+          name="correct_option"
+          value="2"
+          required
+        />
+        <input
+          type="text"
+          id="option2-text"
+          name="option2"
+          placeholder="Enter Option 2"
+          required
+        />
+      </div>
+      <div class="option-item">
+        <input
+          type="radio"
+          id="option3"
+          name="correct_option"
+          value="3"
+          required
+        />
+        <input
+          type="text"
+          id="option3-text"
+          name="option3"
+          placeholder="Enter Option 3"
+          required
+        />
+      </div>
+      <div class="option-item">
+        <input
+          type="radio"
+          id="option4"
+          name="correct_option"
+          value="4"
+          required
+        />
+        <input
+          type="text"
+          id="option4-text"
+          name="option4"
+          placeholder="Enter Option 4"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Category Section -->
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select id="category" name="category" required>
+        <option value="{{ category_id }}">{{category_name}}</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button type="submit" class="btn">Create Quiz</button>
+    </div>
+  </form>
+  <!-- Submit Button -->
+  <div class="form-group">
+    <a href="{{url_for('teacher.manage_quizzes')}}"
+      ><button type="submit" class="btn btn-back">Back</button></a
+    >
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: #f7f9fc;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .quiz-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .quiz-header {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 2px solid #eceff1;
+    margin-bottom: 20px;
+  }
+
+  .quiz-header h2 {
+    font-size: 1.8rem;
+    color: #37474f;
+    margin: 0;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    color: #455a64;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #cfd8dc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .options-group {
+    margin-top: 15px;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .option-item input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  .btn {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-back {
+    background-color: #f44336; /* Red background */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    text-align: center; /* Center text */
+    display: inline-block; /* Makes it behave like a button */
+    text-decoration: none; /* Remove underline for links */
+  }
+
+  /* Hover effect */
+  .btn-back:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+  }
+
+  /* Optional: Focus effect for accessibility */
+  .btn-back:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  }
+</style>
+{% endblock %}

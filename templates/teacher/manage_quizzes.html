@@ -1,0 +1,101 @@
+<!--
+! Created On Thu January 02 1:09 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'teacher/base.html' %} {% block title %}Manage Quizzes{% endblock %}
+{% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/teacher/manage_quizzes.css') }}"
+/>
+<div class="manage-quizzes-container">
+  <h2>Manage Quizzes</h2>
+
+  <!-- Create Quiz Button -->
+  <div class="create-quiz-container">
+    <a href="{{ url_for('teacher.create_quiz') }}" class="btn create-quiz-btn"
+      >Create Quiz</a
+    >
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <form action="{{ url_for('teacher.manage_quizzes') }}" method="GET">
+      <input
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Search quizzes..."
+        class="search-input"
+        value="{{ request.args.get('search', '') }}"
+      />
+    </form>
+  </div>
+
+  <!-- Quizzes Table -->
+  <table class="quizzes-table">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Question</th>
+        <th>Options</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for quiz in quizzes %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ quiz.question }}</td>
+        <td>
+          {% if quiz.correct_option == quiz.option1 %}
+          <ul>
+            <li style="color: green">A. {{ quiz.option1 }}</li>
+            <li>B. {{ quiz.option2 }}</li>
+            <li>C. {{ quiz.option3 }}</li>
+            <li>D. {{ quiz.option4 }}</li>
+          </ul>
+          {% elif quiz.correct_option == quiz.option2 %}
+          <ul>
+            <li>A. {{ quiz.option1 }}</li>
+            <li style="color: green">B. {{ quiz.option2 }}</li>
+            <li>C. {{ quiz.option3 }}</li>
+            <li>D. {{ quiz.option4 }}</li>
+          </ul>
+          {% elif quiz.correct_option == quiz.option3 %}
+          <ul>
+            <li>A. {{ quiz.option1 }}</li>
+            <li>B. {{ quiz.option2 }}</li>
+            <li style="color: green">C. {{ quiz.option3 }}</li>
+            <li>D. {{ quiz.option4 }}</li>
+          </ul>
+          {% elif quiz.correct_option == quiz.option4 %}
+          <ul>
+            <li>A. {{ quiz.option1 }}</li>
+            <li>B. {{ quiz.option2 }}</li>
+            <li>C. {{ quiz.option3 }}</li>
+            <li style="color: green">D. {{ quiz.option4 }}</li>
+          </ul>
+          {% endif %}
+        </td>
+        <td class="actions">
+          <a
+            href="{{ url_for('teacher.edit_quiz', quiz_id=quiz.id) }}"
+            class="btn edit-btn"
+            >Edit</a
+          >
+          <a
+            href="{{ url_for('teacher.delete_quiz', quiz_id=quiz.id) }}"
+            class="btn delete-btn"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

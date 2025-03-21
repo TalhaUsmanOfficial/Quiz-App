@@ -1,0 +1,266 @@
+<!--
+! Created On Wed December 25 1:09 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Settings{% endblock %} {% block
+header_title %}Settings{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/settings.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>
+
+<div class="settings-container">
+  <h2>Admin Settings</h2>
+  <!-- Flash messages will go here -->
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %}
+  <div id="flash-message" class="flash-message">
+    {% for category, message in messages %}
+    <span>{{ message }}</span>
+    <span class="close-btn" onclick="closeFlashMessage()">×</span>
+    {% endfor %}
+  </div>
+  {% endif %} {% endwith %}
+  <div class="tabs">
+    <button class="tab-btn" data-tab="general">General</button>
+    <button class="tab-btn" data-tab="security">Security</button>
+    <button class="tab-btn" data-tab="categories">Categories</button>
+    <button class="tab-btn" data-tab="roles">Roles</button>
+  </div>
+
+  <!-- General Settings -->
+  <div id="general" class="tab-content">
+    <h3>General Settings</h3>
+    <form>
+      <label for="site-title">Site Title:</label>
+      <input
+        type="text"
+        id="site-title"
+        name="site-title"
+        value="My Application"
+      />
+
+      <label for="theme">Theme:</label>
+      <select id="theme" name="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+  </div>
+
+  <!-- Security Settings -->
+  <div id="security" class="tab-content">
+    <h3>Security Settings</h3>
+    <form>
+      <label for="password-length">Minimum Password Length:</label>
+      <input
+        type="number"
+        id="password-length"
+        name="password-length"
+        value="8"
+      />
+
+      <label for="2fa">Enable 2FA:</label>
+      <input type="checkbox" id="2fa" name="2fa" />
+
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+  </div>
+
+  <!-- Category Management -->
+  <div id="categories" class="tab-content">
+    <h3>Manage Categories</h3>
+    <form action="{{ url_for('admin.add_category') }}" method="POST">
+      <label for="category-name">Category Name:</label>
+      <input type="text" id="category-name" name="name" required />
+
+      <label for="category-desc">Description:</label>
+      <textarea
+        id="category-desc"
+        name="description"
+        required
+        rows="5"
+      ></textarea>
+
+      <label for="category_type">Category Type:</label>
+      <select id="category_type" name="category_type" required multiple>
+        {% for category_type in category_types %}
+        <option value="{{ category_type }}">{{ category_type }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit" class="btn btn-primary">Add Category</button>
+    </form>
+
+    <table id="category-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category Type</th>
+          <th>Rating</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ category.name }}</td>
+          <td>{{ category.description[:10] }}..</td>
+          <td>
+            {% if category.category_type|length > 2 %}{{
+            category.category_type[:2] | join('-') }}...{% else %}{{
+            category.category_type | join('-') }}{% endif %}
+          </td>
+          <td>{{ category.rating }}</td>
+          <td>
+            <a
+              href="{{ url_for('admin.view_category', category_id=category.id) }}"
+              class="btn btn-view"
+              >View</a
+            >
+            <a
+              href="{{ url_for('admin.edit_category', category_id=category.id) }}"
+              class="btn btn-edit"
+              >Edit</a
+            >
+            <a
+              href="{{ url_for('admin.delete_category', category_id=category.id) }}"
+              class="btn btn-delete"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Roles Management -->
+  <div id="roles" class="tab-content">
+    <h3>Manage Roles</h3>
+    <form action="{{ url_for('admin.add_role') }}" method="POST">
+      <label for="role-name">Role Name:</label>
+      <input type="text" id="role-name" name="name" required />
+
+      <button type="submit" class="btn btn-primary">Add Role</button>
+    </form>
+
+    <table id="role-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Role Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for role in roles %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ role.name }}</td>
+          <td>
+            <a
+              href="{{ url_for('admin.edit_role', role_id=role.id) }}"
+              class="btn btn-edit"
+              >Edit</a
+            >
+            <a
+              href="{{ url_for('admin.delete_role', role_id=role.id) }}"
+              class="btn btn-delete"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Close the flash message when the user clicks the close button
+  function closeFlashMessage() {
+    var flashMessage = document.getElementById("flash-message");
+    flashMessage.style.opacity = "0";
+    setTimeout(function () {
+      flashMessage.style.display = "none";
+    }, 1000); // Match the transition time
+  }
+
+  // Make the flash message disappear after 3 seconds
+  window.onload = function () {
+    var flashMessage = document.getElementById("flash-message");
+    if (flashMessage) {
+      setTimeout(function () {
+        flashMessage.style.opacity = "0";
+        setTimeout(function () {
+          flashMessage.style.display = "none";
+        }, 1000); // Match the transition time
+      }, 3000); // Wait for 3 seconds before starting to disappear
+    }
+  };
+  document.addEventListener("DOMContentLoaded", () => {
+    // Retrieve active tab and scroll position from localStorage
+    const activeTab = localStorage.getItem("activeTab") || "general";
+    const scrollPosition = localStorage.getItem("scrollPosition") || 0;
+
+    // Show the active tab
+    document.querySelectorAll(".tab-content").forEach((content) => {
+      content.style.display = "none";
+    });
+    document.getElementById(activeTab).style.display = "block";
+
+    // Highlight the correct tab button
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.classList.remove("active");
+      if (btn.dataset.tab === activeTab) {
+        btn.classList.add("active");
+      }
+    });
+
+    // Restore the scroll position
+    window.scrollTo(0, scrollPosition);
+
+    // Add click event listener to each tab button
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Hide all tab contents
+        document.querySelectorAll(".tab-content").forEach((content) => {
+          content.style.display = "none";
+        });
+
+        // Show the selected tab content
+        const selectedTab = btn.dataset.tab;
+        document.getElementById(selectedTab).style.display = "block";
+
+        // Highlight the active tab button
+        document.querySelectorAll(".tab-btn").forEach((button) => {
+          button.classList.remove("active");
+        });
+        btn.classList.add("active");
+
+        // Save the active tab to localStorage
+        localStorage.setItem("activeTab", selectedTab);
+      });
+    });
+
+    // Save scroll position before the page unloads
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("scrollPosition", window.scrollY);
+    });
+  });
+</script>
+
+{% endblock %}

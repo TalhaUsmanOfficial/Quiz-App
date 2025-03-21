@@ -1,0 +1,138 @@
+<!--
+! Created On Sat January 04 12:13 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends "user/base.html" %} {% block title %}Dashboard{% endblock %} {% block
+content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user/dashboard.css') }}"
+/>
+
+<div class="dashboard-container">
+  <!-- Welcome Message -->
+  <div class="welcome-section">
+    <h2>Welcome {{ user_name }}!</h2>
+    <p>
+      Let's dive into your quiz experience. Choose a category and start testing
+      your skills!
+    </p>
+  </div>
+
+  <div class="top-rated-section">
+    <h2>🌟 Top Rated Categories</h2>
+    <div class="categories-container">
+      {% for category in top_rated_categories %}
+      <div class="category-card">
+        <h4>{{ category.name }}</h4>
+        <p class="category-description">{{ category.description }}</p>
+        <div class="rating-stars">
+          {% for _ in range(category.rating | int) %}
+          <span class="star filled">★</span>
+          {% endfor %} {% for _ in range(5 - category.rating | int) %}
+          <span class="star empty">☆</span>
+          {% endfor %}
+          <span class="rating-text">({{ category.rating | round(1) }})</span>
+        </div>
+        <a
+          href="{{ url_for('user.start_quiz', category_id=category.id) }}"
+          class="btn start-quiz-btn"
+          >Start Quiz</a
+        >
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Featured Quizzes Section -->
+  <div class="featured-section">
+    <h3>Featured Quiz Categories</h3>
+    <div class="featured-quizzes">
+      {% for category in featured_categories %}
+      <div class="quiz-card">
+        <h4>{{ category.name }}</h4>
+        <p>{{ category.description }}</p>
+        <a
+          href="{{ url_for('user.start_quiz', category_id=category.id) }}"
+          class="btn btn-secondary category-btn"
+          >Take Quiz</a
+        >
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Hot Categories Section -->
+  <div class="category-section">
+    <h3>Hot Categories</h3>
+    <div class="categories-container">
+      {% for category in hot_categories %}
+      <div class="category-card">
+        <h4>{{ category.name }}</h4>
+        <p>{{ category.description }}</p>
+        <a
+          href="{{ url_for('user.start_quiz', category_id=category.id) }}"
+          class="btn btn-primary"
+          >Start Quiz</a
+        >
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Other Categories Section -->
+  <div class="category-section">
+    <h3>Other Categories</h3>
+    <div class="categories-container">
+      {% for category in simple_categories %}
+      <div class="category-card">
+        <h4>{{ category.name }}</h4>
+        <p>{{ category.description }}</p>
+        <a
+          href="{{ url_for('user.start_quiz', category_id=category.id) }}"
+          class="btn btn-secondary"
+          >Start Quiz</a
+        >
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Leaderboard Section -->
+  <div class="leaderboard-section">
+    <h3>Leaderboard</h3>
+    <div class="leaderboard">
+      {% for result in leaderboard %}
+      <div class="leaderboard-card">
+        <h4>{{ result.user.username }}</h4>
+        <p>Score: {{ result.score }} points</p>
+        <p>Category: {{ result.category.name }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="quick-links-section">
+    <h3>Quick Links</h3>
+    <ul>
+      <li>
+        <a href="{{ url_for('user.profile') }}" class="quick-link"
+          >View Profile</a
+        >
+      </li>
+      <li>
+        <a href="{{ url_for('user.past_quizzes') }}" class="quick-link"
+          >Past Quizzes</a
+        >
+      </li>
+      <li>
+        <a href="{{ url_for('user.settings') }}" class="quick-link">Settings</a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

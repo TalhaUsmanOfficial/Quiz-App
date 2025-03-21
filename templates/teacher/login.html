@@ -1,0 +1,69 @@
+<!--
+! Created On Tue December 31 12:52 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'teacher/base.html' %} {% block title %}Teacher Login{% endblock %}
+{% block content %}
+<div class="registration-container">
+  <h2>Teacher Login</h2>
+
+  <!-- Flash Message -->
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div id="flash-message" class="alert alert-danger">{{ messages[0] }}</div>
+  {% endif %} {% endwith %}
+
+  <form method="POST" action="{{ url_for('teacher.login') }}">
+    <!-- Username or Email -->
+    <div class="form-group">
+      <label for="login_credential">Username or Email</label>
+      <input
+        type="text"
+        id="login_credential"
+        name="login_credential"
+        required
+        class="form-control"
+        placeholder="Enter your username or email"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        class="form-control"
+        placeholder="Enter your password"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+
+  <div class="login-redirect">
+    <p>
+      Don't have an account?
+      <a href="{{ url_for('teacher.register') }}">Register here</a>
+    </p>
+    <p>
+      Forget The Password?
+      <a href="{{ url_for('teacher.register') }}">Reset Password</a>
+    </p>
+  </div>
+</div>
+
+<!-- JavaScript to hide the flash message -->
+<script>
+  setTimeout(function () {
+    const flashMessage = document.getElementById("flash-message");
+    if (flashMessage) {
+      flashMessage.style.display = "none";
+    }
+  }, 3000);
+</script>
+{% endblock %}

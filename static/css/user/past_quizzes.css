@@ -1,0 +1,32 @@
+/*
+! Created On Sat January 11 11:53 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+.quizzes-container {
+  padding: 50px 20px;
+}
+
+.quiz-list {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-item {
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.quiz-item h3 {
+  color: #fff;
+}
+
+.quiz-item p {
+  margin: 5px 0;
+  color: #e0e0e0;
+}

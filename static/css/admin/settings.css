@@ -1,0 +1,170 @@
+/*
+! Created On Wed December 25 1:09 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+.settings-container {
+  padding: 20px;
+  background-color: #f4f6f9;
+}
+
+.tabs {
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab-btn:hover {
+  background-color: #2980b9;
+}
+
+.tab-content {
+  display: none;
+}
+
+select[multiple] {
+  width: 100%; /* Full width */
+  height: 100px; /* Height of the dropdown */
+  padding: 10px; /* Padding */
+  border: 1px solid #ddd; /* Border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #fff; /* Background */
+  font-size: 14px; /* Font size */
+  color: #333; /* Text color */
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+table th,
+table td {
+  padding: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.btn-edit {
+  color: #fff;
+  background-color: #f39c12;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-edit:hover {
+  background-color: #d35400;
+}
+
+.btn-view {
+  color: #fff;
+  background-color: #1277f3;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-view:hover {
+  background-color: #6caeff;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #e74c3c;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+/* Search Bar Styling */
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Anchor Tags Styling */
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* Buttons inside Forms */
+form button {
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+form button:hover {
+  background-color: #27ae60;
+}
+
+/* Flash message container */
+.flash-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #e74c3c; /* Danger color */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+/* Style for the close button */
+.flash-message .close-btn {
+  margin-left: 15px;
+  cursor: pointer;
+}

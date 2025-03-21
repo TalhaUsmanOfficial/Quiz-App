@@ -1,0 +1,97 @@
+<!--
+! Created On Sat December 21 11:37 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Admin Panel{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin/style.css') }}"
+    />
+  </head>
+  <body class="admin-body">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Admin Panel</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="{{ url_for('admin.dashboard') }}" class="sidebar-item"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('admin.users') }}" class="sidebar-item">Users</a>
+        </li>
+        <li>
+          <a href="{{ url_for('admin.teachers') }}" class="sidebar-item"
+            >Teachers</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('admin.quizzes') }}" class="sidebar-item"
+            >Quizzes</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('admin.results') }}" class="sidebar-item"
+            >Results</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('admin.reviews') }}" class="sidebar-item"
+            >Reviews</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('admin.settings') }}" class="sidebar-item"
+            >Settings</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <h1>{% block header_title %}Dashboard{% endblock %}</h1>
+        </div>
+        <div class="header-right">
+          <a href="{{ url_for('admin.logout') }}">
+            <button class="logout-btn">Logout</button>
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Section -->
+      <section class="content">
+        <div class="content-header">
+          <h2>
+            {% block content_header %}Welcome to the Admin Panel{% endblock %}
+          </h2>
+        </div>
+        <div class="content-body">
+          {% block content %}
+          <!-- Default content will go here -->
+          <p>This is where the dynamic content will be rendered.</p>
+          {% endblock %}
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="admin-footer">
+        <p>&copy; 2024 TalhaUsman. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
+</html>

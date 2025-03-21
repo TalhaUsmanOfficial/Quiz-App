@@ -1,0 +1,100 @@
+<!--
+! Created On Wed December 25 2:02 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Edit Category{% endblock %} {%
+block header_title %}Edit Category{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/edit_category.css') }}"
+/>
+
+<div class="edit-category-container">
+  <h2>Edit Category</h2>
+  <form
+    action="{{ url_for('admin.edit_category', category_id=category.id) }}"
+    method="POST"
+  >
+    <label for="category-name">Category Name:</label>
+    <input
+      type="text"
+      id="category-name"
+      name="name"
+      value="{{ category.name }}"
+      required
+    />
+    
+    <label for="category-desc">Description:</label>
+    <textarea id="category-desc" name="description" rows="5" required>{{ category.description }}</textarea>
+      <label for="rating">Rating:</label>
+      <input
+        type="number"
+        id="rating"
+        name="rating"
+        step="0.05"
+        value="{{ category.rating | round(1)}}"
+        required
+      />
+
+      <div
+      class="checkbox-wrapper-26"
+      > 
+      <labe>Lock Rating:</label>
+        <div
+        class="checkbox-wrapper-55"
+        > <label
+        class="rocker rocker-small"
+        > <input
+        type="checkbox"
+        id="lock_rating"
+        name="lock_rating"
+        {% if category.lock_rating == 1%} checked {% endif %}
+        > <span
+        class="switch-left"
+        > Yes</span
+        > <span
+        class="switch-right"
+        > No</span
+        > </label
+        > </div
+        >
+      
+
+    <label for="category_type">Category Type:</label>
+    <select id="category_type" name="category_type" required multiple>
+      {% for category_type in category_types %}
+      <option
+        value="{{ category_type }}"
+        {% if category.category_type == None %}
+        {%
+        elif
+        category_type
+        in
+        category.category_type
+        %}
+        selected
+        {%
+        else
+        %}
+        value="{{ 'Simple' }}"
+        {%
+        endif
+        %}
+      >
+        {{ category_type }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-save">Save Changes</button>
+      <a href="{{ url_for('admin.settings') }}" class="btn btn-cancel"
+        >Cancel</a
+      >
+    </div>
+  </form>
+</div>
+{% endblock %}

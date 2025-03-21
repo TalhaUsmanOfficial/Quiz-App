@@ -1,0 +1,79 @@
+<!--
+! Created On Mon December 23 10:41 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Users - Admin Panel{% endblock
+%} {% block header_title %}Users Management{% endblock %} {% block
+content_header %}Manage Users{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/users.css') }}"
+/>
+
+<div class="users-container">
+  <!-- Search Bar -->
+  <div class="search-container">
+    <form action="{{ url_for('admin.users') }}" method="GET">
+      <input
+        type="text"
+        name="search"
+        placeholder="Search by Name, Email, Role"
+        value="{{ search_query }}"
+      />
+      <button type="submit" class="btn btn-search">Search</button>
+    </form>
+  </div>
+
+  <!-- Users Header -->
+  <div class="users-header">
+    <h2>Users List</h2>
+    <a href="{{ url_for('admin.create_user') }}" class="btn btn-primary"
+      >Create New User</a
+    >
+  </div>
+
+  <!-- Users List Section -->
+  <div class="users-list">
+    <table>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if users %} {% for user in users %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role.name }}</td>
+          <td class="action-btns">
+            <a
+              href="{{ url_for('admin.edit_user', user_id=user.id) }}"
+              class="btn btn-edit"
+              >Edit</a
+            >
+            <a
+              href="{{ url_for('admin.delete_user', user_id=user.id) }}"
+              class="btn btn-delete"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %} {% else %}
+        <tr>
+          <td colspan="5">No users found.</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

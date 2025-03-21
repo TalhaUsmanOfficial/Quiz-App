@@ -1,0 +1,106 @@
+/*
+! Created On Mon December 23 11:03 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* Container for the Create User Form */
+.create-user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f6f9;
+}
+
+/* Styling for the Form */
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-container h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.btn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.alert {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.alert-success {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.alert-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Back Button */
+.back-btn-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn-back {
+  background-color: #95a5a6;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-back:hover {
+  background-color: #7f8c8d;
+}

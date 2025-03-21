@@ -1,0 +1,146 @@
+<!--
+! Created On Sun January 05 9:58 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends "user/base.html" %} {% block title %}Take Quiz{% endblock %} {% block
+content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user/quiz.css') }}"
+/>
+
+<div class="quiz-container">
+  <h2>{{ quiz_category }} Quiz</h2>
+  <form
+    action="{{ url_for('user.submit_quiz', category_id=category_id) }}"
+    method="POST"
+    class="quiz-form"
+  >
+    {% for question in questions %}
+    <div class="question-block">
+      <div class="question">
+        <p>{{ loop.index }}. {{ question.question }}</p>
+      </div>
+
+      <div class="options">
+        {% for option in question.options %}
+        <label>
+          <input type="radio" name="question_{{ question.id }}" value="option{{
+          loop.index0 + 1 }}" id="question_{{ question.id }}_option{{
+          loop.index0 + 1 }}" {% if session[answers].get('question_' ~
+          question.id) == 'option' ~ (loop.index0 + 1) %} checked {% endif %}
+          required/> {{ option }}
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="quiz-navigation">
+      <button type="submit" class="btn btn-primary">Submit Quiz</button>
+    </div>
+  </form>
+  <form
+    action="{{ url_for('user.dashboard') }}"
+    method="POST"
+    class="quiz-form"
+  >
+    <div class="quiz-navigation">
+      <button type="submit" class="btn btn-primary">Back</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Function to store selected answers in sessionStorage
+  document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      const questionId = this.name; // e.g., "question_1"
+      const selectedAnswer = this.value; // e.g., "option1"
+
+      // Store the answer in sessionStorage
+      sessionStorage.setItem(questionId, selectedAnswer);
+    });
+  });
+
+  // Pre-select answers on page load (if available in sessionStorage)
+  window.addEventListener("load", function () {
+    document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+      const questionId = radio.name; // e.g., "question_1"
+      const savedAnswer = sessionStorage.getItem(questionId);
+
+      if (savedAnswer && savedAnswer === radio.value) {
+        radio.checked = true; // Pre-select the radio button if the saved answer matches
+      }
+    });
+
+    // Send selected answers to the backend on page load
+    const selectedAnswers = [];
+    document
+      .querySelectorAll('input[type="radio"]:checked')
+      .forEach((radio) => {
+        selectedAnswers.push({
+          question_id: radio.name.replace("question_", ""), // Extract question ID
+          selected_option: radio.value, // e.g., "option1"
+        });
+      });
+
+    if (selectedAnswers.length > 0) {
+      fetch("/save_user_answers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}", // Include if CSRF protection is enabled
+        },
+        body: JSON.stringify({ answers: selectedAnswers }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("User answers sent to the backend:", data);
+        })
+        .catch((error) => {
+          console.error("Error sending user answers to backend:", error);
+        });
+    }
+  });
+
+  // Function to send selected answers count and category_id to Flask when the user leaves the page
+  function sendSelectedAnswersCount(categoryId) {
+    const selectedCount = document.querySelectorAll(
+      'input[type="radio"]:checked'
+    ).length;
+
+    const data = {
+      selected_count: selectedCount,
+      category_id: categoryId, // Include the category ID
+    };
+
+    navigator.sendBeacon("/save_selected_answers_count", JSON.stringify(data));
+  }
+
+  // Assuming category_id is available in the template as a variable
+  const categoryId = "{{ category_id }}"; // This will come from Flask template context
+
+  window.addEventListener("beforeunload", function (event) {
+    sendSelectedAnswersCount(categoryId);
+  });
+
+  // Or use visibilitychange for detecting tab switching or focus change
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") {
+      sendSelectedAnswersCount(categoryId);
+    }
+  });
+
+  // Clear sessionStorage after form submission
+  document.querySelector(".quiz-form").addEventListener("submit", function () {
+    // Clear sessionStorage after form submission
+    sessionStorage.clear();
+    console.log("sessionStorage cleared");
+  });
+</script>
+
+{% endblock %}

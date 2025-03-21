@@ -1,0 +1,57 @@
+<!--
+! Created On Wed December 25 9:27 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}View Result{% endblock %} {%
+block header_title %}View Result{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/view_result.css') }}"
+/>
+
+<div class="view-result-container">
+  <h2>Result Details</h2>
+
+  <table class="result-details">
+    <tr>
+      <th>ID:</th>
+      <td>{{ result.id }}</td>
+    </tr>
+    <tr>
+      <th>Name:</th>
+      <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+      <th>Score:</th>
+      <td>{{ result.score }}</td>
+    </tr>
+    <tr>
+      <th>Category:</th>
+      <td>{{ result.category.name }}</td>
+    </tr>
+    <tr>
+      <th>Date:</th>
+      <td>{{ result.result_date.strftime('%Y-%m-%d') }}</td>
+    </tr>
+  </table>
+
+  <div class="actions">
+    <a href="{{ url_for('admin.results') }}" class="btn btn-back"
+      >Back to Results</a
+    >
+    <a
+      href="{{ url_for('admin.edit_result', result_id=result.id) }}"
+      class="btn btn-edit"
+      >Edit Result</a
+    >
+    <a
+      href="{{ url_for('admin.delete_result', result_id=result.id) }}"
+      class="btn btn-delete"
+      >Delete Result</a
+    >
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+<!--
+! Created On Mon December 23 11:02 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Create New User{% endblock %}
+{% block header_title %}Create New User{% endblock %} {% block content_header
+%}Create New User{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/create_user.css') }}"
+/>
+
+<div class="create-user-container">
+  <div class="form-container">
+    <h3>Create User</h3>
+
+    <!-- Flash message for success or error -->
+    {% if success %}
+    <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% elif error %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+
+    <!-- Create User Form -->
+    <form method="POST" action="{{ url_for('admin.create_user') }}">
+      <!-- Username -->
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="{{ username }}"
+          required
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value="{{ email }}"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value="{{ password }}"
+          required
+        />
+      </div>
+
+      <!-- Role Selection -->
+      <div class="input-group">
+        <label for="role">Assign Role</label>
+        <select id="role" name="role_id" required>
+          <option value="" disabled selected name="selected_role">
+            Select Role
+          </option>
+          {% for role in roles %}
+          <option value="{{ role.id }}">{{ role.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="input-group">
+        <button type="submit" class="btn btn-primary">Create User</button>
+      </div>
+    </form>
+
+    <!-- Back Button -->
+    <div class="back-btn-container">
+      <a href="{{ url_for('admin.users') }}" class="btn btn-back"
+        >Back to Users</a
+      >
+    </div>
+  </div>
+</div>
+
+{% endblock %}

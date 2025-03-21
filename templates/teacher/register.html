@@ -1,0 +1,190 @@
+<!--
+! Created On Mon December 30 12:02 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'teacher/base.html' %} {% block title %}Teacher Registration{%
+endblock %} {% block content %}
+<div class="registration-container">
+  <h2>Teacher Registration</h2>
+
+  <!-- Flash message -->
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div id="flash-message" class="alert alert-danger">{{ messages[0] }}</div>
+  {% endif %} {% endwith %}
+
+  <form method="POST" action="{{ url_for('teacher.register') }}">
+    <!-- Full Name -->
+    <div class="form-group">
+      <label for="full_name">Full Name</label>
+      <input
+        type="text"
+        id="full_name"
+        name="full_name"
+        required
+        class="form-control"
+        placeholder="Enter your full name"
+      />
+    </div>
+
+    <!-- Username -->
+    <div class="form-group">
+      <label for="user_name">Username</label>
+      <input
+        type="text"
+        id="user_name"
+        name="user_name"
+        required
+        class="form-control"
+        placeholder="Choose a username"
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        class="form-control"
+        placeholder="Enter your email"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        class="form-control"
+        placeholder="Choose a password"
+      />
+    </div>
+
+    <!-- Contact Number -->
+    <div class="form-group">
+      <label for="contact_number">Contact Number</label>
+      <input
+        type="text"
+        id="contact_number"
+        name="contact_number"
+        class="form-control"
+        placeholder="Enter your contact number"
+      />
+    </div>
+
+    <!-- Teacher Info -->
+    <div class="form-group">
+      <label for="teacher_info">Teacher Info</label>
+      <textarea
+        id="teacher_info"
+        name="teacher_info"
+        required
+        class="form-control"
+        placeholder="Tell us about yourself"
+      ></textarea>
+    </div>
+
+    <!-- Additional Notes -->
+    <div class="form-group">
+      <label for="additional_notes">Additional Notes</label>
+      <textarea
+        id="additional_notes"
+        name="additional_notes"
+        class="form-control"
+        placeholder="Any additional notes"
+      ></textarea>
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label for="category_id">Category</label>
+      <select id="category_id" name="category_id" required class="form-control">
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+      <label for="role_id">Role</label>
+      <select id="role_id" name="role_id" required class="form-control">
+        {% for role in roles %} {% if role.name != 'STUDENT' and role.name !=
+        'MAIN ADMIN'%}
+        <option value="{{ role.id }}">{{ role.name }}</option>
+        {% endif %} {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+
+  <div class="login-redirect">
+    <p>
+      Already registered?
+      <a href="{{ url_for('teacher.login') }}">Login here</a>
+    </p>
+  </div>
+</div>
+
+<!-- JavaScript to hide the flash message -->
+<script>
+  setTimeout(function () {
+    const flashMessage = document.getElementById("flash-message");
+    if (flashMessage) {
+      flashMessage.style.display = "none";
+    }
+  }, 3000);
+  // Save form data to localStorage
+  const form = document.querySelector("form");
+  const inputs = form.querySelectorAll("input, textarea, select");
+
+  // Load saved data on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    inputs.forEach((input) => {
+      if (input.name) {
+        const savedValue = localStorage.getItem(input.name);
+        if (savedValue) {
+          if (input.type === "checkbox" || input.type === "radio") {
+            input.checked = savedValue === "true";
+          } else if (input.tagName === "SELECT") {
+            input.value = savedValue;
+          } else {
+            input.value = savedValue;
+          }
+        }
+      }
+    });
+  });
+
+  // Save data to localStorage on input change
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      if (input.name) {
+        const value =
+          input.type === "checkbox" || input.type === "radio"
+            ? input.checked
+            : input.value;
+        localStorage.setItem(input.name, value);
+      }
+    });
+  });
+
+  // Clear localStorage on form submit
+  form.addEventListener("submit", () => {
+    inputs.forEach((input) => {
+      if (input.name) {
+        localStorage.removeItem(input.name);
+      }
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+/*
+! Created On Sun January 12 12:45 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+.container {
+  flex: 1;
+}
+
+.reviews-container {
+  padding: 50px 20px;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.review-item p {
+  margin: 5px 0;
+  color: #e0e0e0;
+}
+
+.review-item strong {
+  color: #ff4081;
+}

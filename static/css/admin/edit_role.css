@@ -1,0 +1,70 @@
+/*
+! Created On Fri December 27 11:01 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+.edit-role-container {
+  padding: 20px;
+  background-color: #f4f6f9;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-role-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #555;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form button,
+form .btn-secondary {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #27ae60;
+}
+
+.btn-secondary {
+  background-color: #e74c3c;
+  color: white;
+  margin-left: 10px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  background-color: #c0392b;
+}

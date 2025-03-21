@@ -1,0 +1,174 @@
+/*
+! Created On Sun December 22 10:27 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* Container for Create Quiz Page */
+.create-quiz-container {
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+}
+
+/* Form Header */
+.form-header h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #34495e;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.form-group textarea {
+  resize: none;
+}
+
+/* Correct Option Section */
+.correct-option {
+  margin-top: 20px;
+}
+
+.correct-option .radio-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #34495e;
+}
+
+.correct-option .radio-group input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-actions .btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-secondary {
+  background-color: #e74c3c;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #c0392b;
+}
+
+/* Alert Container */
+.alert {
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 16px;
+  position: relative;
+}
+
+/* Success Alert */
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+/* Add Close Button (Optional) */
+.alert .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #155724;
+  cursor: pointer;
+}
+
+.alert .close-btn:hover {
+  color: #0b2e13;
+}
+
+/* Error Alert */
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+/* Category selection styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+#category {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: border-color 0.3s ease-in-out;
+}
+
+#category:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+label[for="category"] {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+option {
+  padding: 8px;
+}

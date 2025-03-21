@@ -1,0 +1,91 @@
+/*
+! Created On Sat December 21 11:46 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* General Body for Authentication */
+.auth-body {
+  background-color: #ecf0f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Auth Container */
+.auth-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Auth Card */
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.auth-card h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Input Group */
+.input-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #34495e;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+.input-group input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.submit-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Error Message */
+.error-message {
+  color: #e74c3c;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}

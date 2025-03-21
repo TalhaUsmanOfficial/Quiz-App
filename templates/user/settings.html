@@ -1,0 +1,60 @@
+<!--
+! Created On Sat January 11 11:40 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'user/base.html' %} {% block title %}Settings{% endblock %} {% block
+content %}
+<div class="container">
+  <h2>Settings</h2>
+
+  <!-- Update User Info Section -->
+  <div class="auth-container">
+    <h2>Update Your Information</h2>
+    <form method="POST" action="{{ url_for('user.update_settings') }}">
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          class="form-input"
+          value="{{ user.username }}"
+          required
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-input"
+          value="{{ user.email }}"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-input"
+          placeholder="Leave blank to keep current password"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn">Update Settings</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

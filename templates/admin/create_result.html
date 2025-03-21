@@ -1,0 +1,44 @@
+<!--
+! Created On Wed December 25 2:31 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Create Result{% endblock %} {%
+block header_title %}Create Result{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/create_result.css') }}"
+/>
+
+<div class="create-result-container">
+  <h2>Create Result</h2>
+  <form action="{{ url_for('admin.create_result') }}" method="POST">
+    <label for="student">Student Name:</label>
+    <select id="student" name="student_id" required>
+      {% for student in students %}
+      <option value="{{ student.id }}">{{ student.username }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="score">Score:</label>
+    <input type="number" id="score" name="score" min="0" max="100" required />
+
+    <label for="category">Category:</label>
+    <select id="category" name="category_id" required>
+      {% for category in categories %}
+      <option value="{{ category.id }}">{{ category.name }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="date">Date of Result:</label>
+    <input type="date" id="date" name="result_date" required />
+
+    <button type="submit" class="btn btn-primary">Save Result</button>
+  </form>
+  <form action="{{url_for('admin.results')}}" method="GET">
+    <button class="btn btn-view" style="margin-top: 12px">Back</button>
+  </form>
+</div>
+{% endblock %}

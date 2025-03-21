@@ -1,0 +1,72 @@
+<!--
+! Created On Thu January 02 7:21 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'teacher/base.html' %} {% block title %}Edit Quiz{% endblock %} {%
+block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/teacher/edit_quiz.css') }}"
+/>
+<div class="edit-quiz-container">
+  <h2>Edit Quiz</h2>
+
+  <!-- Edit Quiz Form -->
+  <form
+    action="{{ url_for('teacher.edit_quiz', quiz_id=quiz.id) }}"
+    method="POST"
+    class="edit-quiz-form"
+  >
+    <!-- Question Section -->
+    <div class="form-group">
+      <label for="question">Question:</label>
+      <input
+        type="text"
+        id="question"
+        name="question"
+        value="{{ quiz.question }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label><strong>Category: <strong>{{ category }}</label>
+    </div>
+
+    <!-- Options Section -->
+    <div class="options-group">
+      <label>Options:</label>
+      <div class="option-item">
+        <input type="radio" id="option1" name="correct_option" value="1" {% if
+        quiz.correct_option == quiz.option1 %}checked{% endif %} />
+        <input type="text" name="option1" value="{{ quiz.option1 }}" required />
+      </div>
+      <div class="option-item">
+        <input type="radio" id="option2" name="correct_option" value="2" {% if
+        quiz.correct_option == quiz.option2 %}checked{% endif %} />
+        <input type="text" name="option2" value="{{ quiz.option2 }}" required />
+      </div>
+      <div class="option-item">
+        <input type="radio" id="option3" name="correct_option" value="3" {% if
+        quiz.correct_option == quiz.option3 %}checked{% endif %} />
+        <input type="text" name="option3" value="{{ quiz.option3 }}" required />
+      </div>
+      <div class="option-item">
+        <input type="radio" id="option4" name="correct_option" value="4" {% if
+        quiz.correct_option == quiz.option4 %}checked{% endif %} />
+        <input type="text" name="option4" value="{{ quiz.option4 }}" required />
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button type="submit" class="btn save-btn">Save Changes</button>
+    </div>
+</form>
+<div class="form-group">
+  <a href="{{ url_for('teacher.manage_quizzes') }}" style="text-decoration: none; color:white;"><button type="button" class="btn cancel-btn" style="background-color: #ff5a00; color: white;">Cancel</button></a>
+</div>
+</div>
+{% endblock %}

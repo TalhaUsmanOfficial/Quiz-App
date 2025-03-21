@@ -1,0 +1,48 @@
+<!--
+! Created On Fri January 03 10:32 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/user/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="{{ url_for('user.dashboard') }}" class="logo">Dashboard</a>
+        <ul class="nav-links">
+          {% if session.get('user_id') %}
+          <!-- User is logged in, show Logout link -->
+          <li><a href="{{ url_for('user.profile') }}">View Profile</a></li>
+          <li><a href="{{ url_for('user.past_quizzes') }}">Past Quizzes</a></li>
+          <li><a href="{{ url_for('user.settings') }}">Settings</a></li>
+          <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
+          {% else %}
+          <!-- User is not logged in, show Login and Sign Up links -->
+          <li><a href="{{ url_for('user.login') }}">Login</a></li>
+          <li><a href="{{ url_for('user.signup') }}">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Content Block -->
+    {% block content %} {% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Muhammad Talha Usman. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

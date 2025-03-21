@@ -1,0 +1,57 @@
+<!--
+! Created On Mon December 30 12:02 AM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Teacher Dashboard{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/teacher/base.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Side Navigation Bar -->
+    <div class="sidebar">
+      <div class="logo">Teacher Dashboard</div>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('teacher.dashboard') }}">Dashboard</a></li>
+          <li>
+            <a href="{{ url_for('teacher.create_quiz') }}">Create Quiz</a>
+          </li>
+          <li>
+            <a href="{{ url_for('teacher.manage_quizzes') }}">Manage Quizzes</a>
+          </li>
+          <li>
+            <a href="{{ url_for('teacher.view_results') }}">View Results</a>
+          </li>
+          <li><a href="{{ url_for('teacher.profile') }}">Profile</a></li>
+          <li><a href="{{ url_for('teacher.logout') }}">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+      <!-- Header -->
+      <header class="navbar">
+        <div class="greeting">Welcome</div>
+      </header>
+
+      <!-- Main Content Section -->
+      <div class="content">{% block content %}{% endblock %}</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Teacher Dashboard. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

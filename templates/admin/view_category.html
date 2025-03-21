@@ -1,0 +1,50 @@
+<!--
+! Created On Sun January 05 1:11 AM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}View Category{% endblock %} {%
+block header_title %}View Category{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/view_category.css') }}"
+/>
+
+<div class="view-category-container">
+  <h2>Category Details</h2>
+
+  <div class="category-detail">
+    <label for="category-name">Category Name:</label>
+    <div id="category-name">{{ category.name }}</div>
+  </div>
+
+  <div class="category-detail">
+    <label for="category-desc">Description:</label>
+    <div id="category-desc">{{ category.description }}</div>
+  </div>
+
+  <div class="category-detail">
+    <label for="category_type">Category Type:</label>
+    <div id="category_type">
+      {% if category.category_type %} {% for type in category.category_type %}
+      {{ type }}{% if not loop.last %}, {% endif %} {% endfor %} {% else %} No
+      category type specified {% endif %}
+    </div>
+  </div>
+  <div class="category-detail">
+    <label for="category_type">Rating:</label>
+    <div id="category_type">{{ category.rating }}</div>
+  </div>
+
+  <div class="form-actions">
+    <a
+      href="{{ url_for('admin.edit_category', category_id=category.id) }}"
+      class="btn btn-edit"
+      >Edit</a
+    >
+    <a href="{{ url_for('admin.settings') }}" class="btn btn-cancel">Cancel</a>
+  </div>
+</div>
+{% endblock %}

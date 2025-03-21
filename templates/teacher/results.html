@@ -1,0 +1,126 @@
+<!--
+! Created On Thu January 02 8:44 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'teacher/base.html' %} {% block title %}Student Results{% endblock %}
+{% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/teacher/results.css') }}"
+/>
+
+<div class="results-container">
+  <h2>Student Results</h2>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <form method="GET" action="{{ url_for('teacher.view_results') }}">
+      <input
+        type="text"
+        name="search"
+        id="search"
+        placeholder="Search students..."
+        class="search-input"
+        value="{{ request.args.get('search', '') }}"
+      />
+    </form>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-container">
+    <label for="filter-marks" class="filter-label">Filter by Marks:</label>
+    <select id="filter-marks" class="filter-select">
+      <option value="all">All</option>
+      <option value="80">Above 80%</option>
+      <option value="60">60%-80%</option>
+      <option value="40">40%-60%</option>
+      <option value="below40">Below 40%</option>
+    </select>
+  </div>
+
+  <!-- Export to Excel Button -->
+  <div class="export-excel">
+    <button onclick="exportTableToExcel()" class="btn btn-export">
+      Export to Excel
+    </button>
+  </div>
+
+  <!-- Results Table -->
+  <table class="results-table" id="resultsTable">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Student Name</th>
+        <th>Student Email</th>
+        <th>Category</th>
+        <th>Score</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="results-body">
+      {% for result in results %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ result.user.username }}</td>
+        <td>{{ result.user.email }}</td>
+        <td>{{ result.category.name }}</td>
+        <td data-score="{{ result.score }}">{{ result.score }}</td>
+        <td>{{ result.result_date.strftime('%Y-%m-%d') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Include the SheetJS library -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="{{ url_for('static', filename='js/script_teacher.js') }}"></script>
+
+<script>
+  // Check if there's a stored filter value in localStorage
+  const storedFilter = localStorage.getItem("selectedFilter") || "all";
+
+  // Set the selected filter in the dropdown based on the stored value
+  const filterSelect = document.getElementById("filter-marks");
+  filterSelect.value = storedFilter;
+
+  // Apply the stored filter value to the table
+  const resultsBody = document.getElementById("results-body");
+  const rows = resultsBody.querySelectorAll("tr");
+
+  // Function to filter rows based on the selected filter
+  function filterResults() {
+    const value = filterSelect.value;
+
+    rows.forEach((row) => {
+      const scoreCell = row.querySelector("td[data-score]");
+      const score = parseInt(scoreCell.dataset.score);
+
+      if (
+        value === "all" ||
+        (value === "80" && score > 80) ||
+        (value === "60" && score <= 80 && score > 60) ||
+        (value === "40" && score <= 60 && score > 40) ||
+        (value === "below40" && score <= 40)
+      ) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+
+    // Store the selected filter in localStorage
+    localStorage.setItem("selectedFilter", value);
+  }
+
+  // Event listener for changes in the filter dropdown
+  filterSelect.addEventListener("change", filterResults);
+
+  // Call the filter function on page load to apply the stored filter
+  filterResults();
+</script>
+
+{% endblock %}

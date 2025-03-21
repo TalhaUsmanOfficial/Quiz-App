@@ -1,0 +1,98 @@
+<!--
+! Created On Sun December 29 11:10 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} {% block title %}Teacher Approvals{% endblock %}
+{% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/approvals.css') }}"
+/>
+
+<div class="approval-container">
+  <h2>Teacher Registration Requests</h2>
+  <form
+    class="search-form"
+    method="GET"
+    action="{{ url_for('admin.filter_teacher_approvals') }}"
+  >
+    <input
+      type="text"
+      name="search"
+      placeholder="Search by name or email"
+      value="{{ request.args.get('search', '') }}"
+    />
+    <select name="filter">
+      <option value="{{ request.args.get('filter', '') }}">
+        {{filtered_value}}
+      </option>
+      <option value="all">All</option>
+      <option value="pending">Pending</option>
+      <option value="approved">Approved</option>
+      <option value="rejected">Rejected</option>
+    </select>
+    <button type="submit" class="btn btn-search">Search</button>
+  </form>
+
+  <!-- Export to Excel Button -->
+  <div class="export-excel">
+    <button onclick="exportTableToExcel()" class="btn btn-export">
+      Export to Excel
+    </button>
+  </div>
+
+  <table id="resultsTable">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Full Name</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for request in requests %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ request.full_name }}</td>
+        <td>{{ request.user_name }}</td>
+        <td>{{ request.email }}</td>
+        <td>{{ request.role.name }}</td>
+        <td>{{ request.status }}</td>
+        <td>
+          <a
+            href="{{url_for('admin.view_teachers_profile', teacher_id=request.id)}}"
+            ><button class="btn btn-view">View</button></a
+          >
+          {% if request.status == 'Pending' %}
+          <form
+            method="POST"
+            action="{{ url_for('admin.approve_teacher', teacher_id=request.id) }}"
+            style="display: inline"
+          >
+            <button type="submit" class="btn btn-approve">Approve</button>
+          </form>
+          <form
+            method="POST"
+            action="{{ url_for('admin.reject_teacher', teacher_id=request.id) }}"
+            style="display: inline"
+          >
+            <button type="submit" class="btn btn-reject">Reject</button>
+          </form>
+          {% else %} {{ request.status }} {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!-- Include the SheetJS library -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

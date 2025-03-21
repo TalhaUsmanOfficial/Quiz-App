@@ -1,0 +1,60 @@
+<!--
+! Created On Wed December 25 9:55 PM 2024
+
+! @author: Talha Usman
+! Status: Developer
+-->
+
+{% extends 'admin/base.html' %} 
+{% block title %}Edit Result{% endblock %} 
+{% block header_title %}Edit Result{% endblock %} 
+{% block content %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin/edit_result.css') }}"
+/>
+
+<div class="edit-result-container">
+  <h2>Edit Result</h2>
+  <form action="{{ url_for('admin.edit_result', result_id=result.id) }}" method="POST">
+    <label for="student">Student Name:</label>
+    <select id="student" name="student_id" required>
+      {% for student in students %}
+      <option value="{{ student.id }}" {% if student.id == result.user_id %}selected{% endif %}>
+        {{ student.username }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <label for="score">Score:</label>
+    <input
+      type="number"
+      id="score"
+      name="score"
+      value="{{ result.score }}"
+      min="0"
+      max="100"
+      required
+    />
+
+    <label for="category">Category:</label>
+  <select id="category" name="category_id" required>
+    {% for category in categories %}
+    <option value="{{ category.id }}" {% if category.id == result.category_id %}selected{% endif %}>
+      {{ category.name }}
+    </option>
+    {% endfor %}
+  </select>
+
+    <label for="date">Date of Result:</label>
+    <input type="date" id="date" name="result_date" value="{{ result_date }}" required />
+
+    <button type="submit" class="btn btn-primary">Update Result</button>
+  </form>
+  <form action="{{ url_for('admin.results') }}" method="GET">
+    <button class="btn btn-delete" style="margin-top: 12px">Cancel</button>
+  </form>
+</div>
+
+{% endblock %}

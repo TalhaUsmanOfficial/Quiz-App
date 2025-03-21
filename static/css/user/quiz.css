@@ -1,0 +1,99 @@
+/*
+! Created On Sun January 05 9:59 PM 2025
+
+! @author: Talha Usman
+! Status: Developer
+*/
+
+/* quiz.css */
+.quiz-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #00d9ff;
+}
+
+.quiz-header {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.quiz-header p {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.question {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.options label {
+  display: block;
+  margin: 10px 0;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #2b2b3b;
+  transition: background-color 0.3s;
+}
+
+.options input[type="radio"] {
+  margin-right: 10px;
+}
+
+.options label:hover {
+  background-color: #00d9ff;
+  color: #000;
+}
+
+.quiz-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #00d9ff;
+  color: #000;
+}
+
+.btn-secondary {
+  background-color: #444;
+  color: #fff;
+}
+
+.progress-bar {
+  margin-top: 30px;
+  background-color: #444;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: #00d9ff;
+  transition: width 0.3s;
+}
